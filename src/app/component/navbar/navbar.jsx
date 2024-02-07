@@ -1,11 +1,14 @@
+"use client";
 import React from "react";
 import Logo from "../logo/logo";
 
 import { IoMdCart } from "react-icons/io";
 import { FiSearch, FiLogOut } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Navbar() {
+  const { data: session } = useSession();
   return (
     <div className="h-[5rem] bg-bodyColor top-0 sticky z-50 p-[3rem]">
       <div className="h-full flex items-center md:gap-x-5 justify-between md:justify-start">
@@ -19,7 +22,10 @@ export default function Navbar() {
           />
         </div>
         {/* login */}
-        <div className=" bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full  hover:bg-white border-[2px] duration-500 ">
+        <div
+          onClick={() => signIn()}
+          className=" bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full  hover:bg-white border-[2px] duration-500 cursor-pointer"
+        >
           <AiOutlineUser className="text-2xl" />
           <p className="text-sm font-semibold">Login/Register</p>
         </div>
