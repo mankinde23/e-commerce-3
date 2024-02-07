@@ -22,13 +22,15 @@ export default function Navbar() {
           />
         </div>
         {/* login */}
-        <div
-          onClick={() => signIn()}
-          className=" bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full  hover:bg-white border-[2px] duration-500 cursor-pointer"
-        >
-          <AiOutlineUser className="text-2xl" />
-          <p className="text-sm font-semibold">Login/Register</p>
-        </div>
+        {!session && (
+          <div
+            onClick={() => signIn()}
+            className=" bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full  hover:bg-white border-[2px] duration-500 cursor-pointer"
+          >
+            <AiOutlineUser className="text-2xl" />
+            <p className="text-sm font-semibold">Login/Register</p>
+          </div>
+        )}
         {/* cart */}
         <div className="bg-black hover:bg-slate-950 rounded-full text-slate-100 hover:text-white flex items-center justify-center gap-x-1 px-3 py-1.5 border-[1px] border-black hover:border-orange-600 duration-200 relative">
           <IoMdCart className="text-xl" />
@@ -37,6 +39,26 @@ export default function Navbar() {
             0
           </span>
         </div>
+        {/* user Image */}
+        {session && (
+          <Image
+            src={session?.user?.image}
+            alt="user image"
+            width={50}
+            height={50}
+            className="rounded-full object-cover"
+          />
+        )}
+        {/* logout */}
+        {session && (
+          <div
+            onClick={signOut()}
+            className=" bg-bgLight text-gray-500 flex items-center justify-center p-1.5 rounded-full  hover:bg-white border-[2px] duration-500 cursor-pointer"
+          >
+            <FiLogOut className="text-2xl" />
+            <p className="text-sm font-semibold">Log out</p>
+          </div>
+        )}
       </div>
     </div>
   );
