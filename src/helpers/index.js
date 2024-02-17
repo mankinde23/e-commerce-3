@@ -6,5 +6,5 @@ export const getProducts = async () => {
     throw new Error("Failed to fetch products");
   }
   return res.json();
-  console.log(res);
+
 };
