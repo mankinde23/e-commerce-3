@@ -1,6 +1,7 @@
 import { data } from "autoprefixer";
 import Banner from "./component/banner/Banner";
-import Main from "./component/main/main";
+import Main from "./main/page";
+import { getProducts } from "@/helpers";
 // async function getData() {
 //   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
 //     cache: "no-store",
