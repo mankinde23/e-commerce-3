@@ -9,11 +9,15 @@
 
 // export default sessionprovider;
 
-import { SessionProvider } from 'next-auth/react'
-import React from 'react'
+import { SessionProvider } from "next-auth/react";
+import { Provider } from "react-redux";
+import React from "react";
+import { store } from "@/redux/store";
 
-export default function AuthProvider({children }) {
+export default function AuthProvider({ children }) {
   return (
-    <SessionProvider>{children} </SessionProvider>
-  )
+    <Provider store={store}>
+      <SessionProvider>{children} </SessionProvider>
+    </Provider>
+  );
 }
