@@ -95,7 +95,7 @@ import React from "react";
 
 export default function Product({ item }) {
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       <Link href={`/main/${item.id}`}>
         <div className="border-[1px] border-slate-300 border-t-0 px-2 py-4 flex flex-col gap-y-2  rounded-b-lg">
           <div>
@@ -119,6 +119,12 @@ export default function Product({ item }) {
           />
         </div>{" "}
       </Link>
+      <div className="flex items-center justify-between">
+        <button className="bg-orange-600 px-4 py-2 text-sm tracking-wide rounded-full text-slate-100 hover:bg-orange-800 hover:text-white duration-200">
+          {" "}
+          add to cart
+        </button>
+      </div>
     </div>
   );
 }
