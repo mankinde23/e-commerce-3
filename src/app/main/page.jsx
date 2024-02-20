@@ -123,7 +123,7 @@ const getData = async () => {
 export default async function Main() {
   const data = await getData();
   return (
-    <div>
+    <div className="flex flex-col gap-10">
       {data.map((item) => (
         <div key={item.id}>
           <Product item={item} />
