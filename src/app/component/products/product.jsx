@@ -90,14 +90,15 @@
 //     },
 //   };
 // }
+"use client";
 import { addToCart } from "@/redux/shoppingSlice";
 import Link from "next/link";
 import React from "react";
 import { useDispatch } from "react-redux";
-// import toast, { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Product({ item }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col gap-3">
       <Link href={`/main/${item.id}`}>
@@ -124,12 +125,18 @@ export default function Product({ item }) {
         </div>{" "}
       </Link>
       <div className="flex items-center justify-between">
-        <button className="bg-orange-600 px-4 py-2 text-sm tracking-wide rounded-full text-slate-100 hover:bg-orange-800 hover:text-white duration-200"
-        onClick={()=>dispatch(addToCart(item))}>
+        <button
+          className="bg-orange-600 px-4 py-2 text-sm tracking-wide rounded-full text-slate-100 hover:bg-orange-800 hover:text-white duration-200"
+          onClick={() =>
+            dispatch(addToCart(item)) &&
+            toast.success(`${item.title} added succesfully!`)
+          }
+        >
           {" "}
           add to cart
         </button>
       </div>
+      <Toaster></Toaster>
     </div>
   );
 }
