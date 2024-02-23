@@ -17,7 +17,6 @@ export const shoppingSlice = createSlice({
       } else {
         state.productData.push(action.payload);
       }
-      state.productData = action.payload;
     },
     increaseQuantity: (state, action) => {
       const existingProduct = state.productData.find(
@@ -45,5 +44,11 @@ export const shoppingSlice = createSlice({
     },
   },
 });
-export const { addToCart } = shoppingSlice.actions;
+export const {
+  addToCart,
+  increaseQuantity,
+  decreaseQuantity,
+  deleteProduct,
+  resetCart,
+} = shoppingSlice.actions;
 export default shoppingSlice.reducer;
