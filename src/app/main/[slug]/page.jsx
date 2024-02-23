@@ -1,5 +1,9 @@
+"use client";
+import { addToCart } from "@/redux/shoppingSlice";
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { IoMdCart } from "react-icons/io";
+import { useDispatch } from "react-redux";
 const getData = async (slug) => {
   //   const res = await fetch(
   //     `https://fakestoreapiserver.reactbd.com/amazonproducts/${slug}`
@@ -20,8 +24,10 @@ const getData = async (slug) => {
   }
 };
 export default async function Singlepage({ params }) {
+  const dispatch = useDispatch();
   const { slug } = params;
   const item = await getData(slug);
+
   return (
     <div className="grid lg:grid-cols-2 gap-5 bg-white p-4 rounded-lg">
       <div className="w-full group overflow-hidden">
@@ -44,7 +50,13 @@ export default async function Singlepage({ params }) {
         <div>
           <p className="text-lightText">{item.description}</p>
         </div>
-        <div className="flex items-center cursor-pointer group">
+        <div
+          className="flex items-center cursor-pointer group"
+          onClick={() =>
+            dispatch(addToCart(item)) &&
+            toast.success(`${item.title} added succesfully!`)
+          }
+        >
           <button className="bg-darkText text-slate-100 px-6 py-3 text-sm uppercase flex items-center border-r-[1px] border-r-slate-500">
             add to cart
           </button>
@@ -53,6 +65,7 @@ export default async function Singlepage({ params }) {
           </span>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
